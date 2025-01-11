@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Moon, Sun, Languages } from 'lucide-react';
 import { Link } from './Link';
 
 export function Header() {
   const [isDark, setIsDark] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'fr'>('en');
+  const { i18n } = useTranslation();
+  const languages = ['en', 'fr', 'es', 'hi', 'de'];
+  const [language, setLanguage] = useState('en');
 
-  // Add this useEffect block
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -14,6 +16,11 @@ export function Header() {
       document.documentElement.classList.remove('dark');
     }
   }, [isDark]);
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setLanguage(lng);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
@@ -36,12 +43,15 @@ export function Header() {
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
           
-          <button
-            onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
-          >
-            <Languages className="w-5 h-5" />
-          </button>
+          {languages.map((lng) => (
+            <button
+              key={lng}
+              onClick={() => changeLanguage(lng)}
+              className={`p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full ${language === lng ? 'font-bold' : ''}`}
+            >
+              {lng.toUpperCase()}
+            </button>
+          ))}
         </div>
       </nav>
     </header>
