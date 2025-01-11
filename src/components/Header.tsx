@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Moon, Sun, Languages } from 'lucide-react';
 import { Link } from './Link';
 
