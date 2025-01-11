@@ -6,6 +6,15 @@ export function Header() {
   const [isDark, setIsDark] = useState(false);
   const [language, setLanguage] = useState<'en' | 'fr'>('en');
 
+  // Add this useEffect block
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
