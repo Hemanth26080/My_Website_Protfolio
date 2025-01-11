@@ -5,7 +5,7 @@ import { Link } from './Link';
 
 export function Header() {
   const [isDark, setIsDark] = useState(false);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const languages = ['en', 'fr', 'es', 'hi', 'de'];
   const [language, setLanguage] = useState('en');
 
@@ -26,15 +26,15 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="#home" className="text-2xl font-bold text-blue-900 dark:text-cream">
-          Hemanth Portfolio
+          {t('Hemanth Portfolio')}
         </Link>
         
         <div className="flex items-center gap-6">
-          <Link href="#home">Home</Link>
-          <Link href="#about">About</Link>
-          <Link href="#skills">Skills</Link>
-          <Link href="#projects">Projects</Link>
-          <Link href="#contact">Contact</Link>
+          <Link href="#home">{t('Home')}</Link>
+          <Link href="#about">{t('About')}</Link>
+          <Link href="#skills">{t('Skills')}</Link>
+          <Link href="#projects">{t('Projects')}</Link>
+          <Link href="#contact">{t('Contact')}</Link>
           
           <button
             onClick={() => setIsDark(!isDark)}
