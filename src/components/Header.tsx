@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Moon, Sun, Languages } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { Link } from './Link';
 
 export function Header() {
@@ -43,15 +43,19 @@ export function Header() {
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
           
-          {languages.map((lng) => (
-            <button
-              key={lng}
-              onClick={() => changeLanguage(lng)}
-              className={`p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full ${language === lng ? 'font-bold' : ''}`}
+          <div className="relative">
+            <select 
+              onChange={(e) => changeLanguage(e.target.value)} 
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+              value={language}
             >
-              {lng.toUpperCase()}
-            </button>
-          ))}
+              {languages.map((lng) => (
+                <option key={lng} value={lng}>
+                  {lng.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </nav>
     </header>
