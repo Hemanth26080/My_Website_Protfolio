@@ -1,6 +1,8 @@
 import { GraduationCap, Briefcase } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function About() {
+
   return (
     <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-6">
